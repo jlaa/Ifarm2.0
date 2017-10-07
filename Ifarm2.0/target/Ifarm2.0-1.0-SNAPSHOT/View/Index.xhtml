@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">      
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <h:form id="geral">
+            <h:outputText value="Informação pessoal"/>
+
+
+            <h:column>
+                <br />
+                <h:outputText  value="Primeiro nome: "/><br />
+                <h:inputText id="primeiroNome" value="#{register.primeiroNome}" />
+                <br />
+                <h:message for="primeiroNome" />
+                <br />
+                <br />                       
+                <h:outputText  value="Sobrenome: "/><br />
+                <h:inputText id="segundoNome" value="#{register.segundoNome}" />
+                <br />
+                <h:message for="segundoNome" />
+                <br />
+                <br />
+                <h:outputText  value="Sexo: "/><br />
+                <h:inputText id="sexo" value="#{register.sexo}" />
+                <br />
+                <h:message for="sexo" />
+                <br />
+                <br />                       
+                <h:outputText  value="Ocupacao: "/><br />
+                <h:inputText id="ocupacao" value="#{register.ocupacao}" />
+                <br />
+                <h:message for="ocupacao" />
+                <br />
+                <br />
+                <h:outputText  value="Endereço de Email: "/><br />
+                <h:inputText id="email" value="#{register.email}" />
+                <br />
+                <h:message for="email" />
+                <br />
+                <br />
+                <h:outputText  value="Telefone: "/><br />
+                <h:inputText  id="telefone" value="#{register.telefone}" />
+                <br />
+                <h:message for="telefone" />
+                <br />
+                <br />
+                <h:outputText  value="Estado: "/><br />
+                <h:inputText id="estado" value="#{register.estado}"/>
+
+                <br />
+                <h:message for="estado" />
+                <br />
+                <br />
+                <h:outputText  value="Rua: "/><br />
+                <h:inputText id="rua" value="#{register.rua}"/>
+                <br />
+                <h:message for="rua" />
+                <br />
+                <br />
+                <h:outputText  value="Número: "/><br />
+                <h:inputText id="numero" value="#{register.numero}"/>
+                <br />
+                <h:message for="numero" />            
+                <br />
+                <br />
+                <h:outputText value="Bairro: "/><br />
+                <h:inputText id="bairro" value="#{register.bairo}" />
+                <br />
+                <h:message for="bairro" />
+                <br/>
+                <br/>
+                <h:outputText value="Cidade: "/><br />
+                <h:inputText id="cidade" value="#{register.cidade}"/>
+                <h:message for="cidade" /> 
+                <br/>
+                <br />
+                <h:outputText  value="CEP: "/><br />
+                <h:inputText id="cep" value="#{register.cep}"/>
+                <br />
+                <h:message for="cep" />
+                <br />
+                <br />
+                <h:outputText value="Informações de login"/>
+                <br />
+                <br />
+                <h:outputText  value="Login: "/><br />
+                <h:inputText id="login" value="#{register.login}" />
+                <br />
+                <h:message for="login" />                              
+                <br />
+                <br />             
+                <h:outputText  value="Senha: "/><br />
+                <h:inputSecret id="senha" value="#{register.senha}"/>
+                <br />
+                <h:message for="senha" />
+                <br />
+                <br />
+                <h:outputText  value="Confirme a Senha: "/><br />
+                <h:inputSecret id ="confirmarSenha" value="#{register.confirmarSenha}" />
+                <br />
+                <h:message for="confirmarSenha" />  
+                <br/>             
+                <br />
+                <h:commandButton   value="Submit" action="#{register.cadastrarCliente()}" />  
+                <br />
+                <br />
+            </h:column>
+
+        </h:form>
+
+    </h:body>
+</html>
+
