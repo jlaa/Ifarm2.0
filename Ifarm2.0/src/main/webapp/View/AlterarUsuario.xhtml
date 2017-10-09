@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">      
+    <h:head>
+        <title>Ifarm</title>
+    </h:head>
+    <h:body>
+        <h:form id="geral">
+            <h:outputText value="Informação pessoal"/>
+
+
+            <h:column>
+                <br />
+                <h:outputText  value="Nome: "/><br />
+                <h:inputText id="nome" value="#{alterarUsuario.nome}" />
+                <br />
+                <h:message for="nome" />
+                <br />
+                <br />                   
+                <h:outputText  value="Telefone: "/><br />
+                <h:inputText  id="telefone" value="#{alterarUsuario.telefone}" />
+                <br />
+                <h:message for="telefone" />
+                <br />
+                <br />
+                <h:outputText  value="Estado: "/><br />
+                <h:inputText id="estado" value="#{alterarUsuario.estado}"/>
+                <br />
+                <h:message for="estado" />
+                <br />
+                <br />
+                <h:outputText  value="Rua: "/><br />
+                <h:inputText id="rua" value="#{alterarUsuario.rua}"/>
+                <br />
+                <h:message for="rua" />
+                <br />
+                <br />
+                <h:outputText  value="Número: "/><br />
+                <h:inputText id="numero" value="#{alterarUsuario.numero}"/>
+                <br />
+                <h:message for="numero" />            
+                <br />
+                <br />
+                <h:outputText value="Bairro: "/><br />
+                <h:inputText id="bairro" value="#{alterarUsuario.bairo}" />
+                <br />
+                <h:message for="bairro" />
+                <br/>
+                <br/>
+                <h:outputText value="Cidade: "/><br />
+                <h:inputText id="cidade" value="#{alterarUsuario.cidade}"/>
+                <h:message for="cidade" /> 
+                <br/>
+                <br />
+                <h:outputText  value="CEP: "/><br />
+                <h:inputText id="cep" value="#{alterarUsuario.cep}"/>
+                <br />
+                <h:message for="cep" />       
+                <br/>             
+                <br />
+                <h:commandButton value="Submit" action="#{alterarUsuario.alterarUsuario()}" />  
+                <br />
+                <br />
+            </h:column>
+
+        </h:form>
+    </h:body>
+</html>
+

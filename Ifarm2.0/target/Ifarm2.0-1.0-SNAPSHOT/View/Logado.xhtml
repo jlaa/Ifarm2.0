@@ -8,8 +8,9 @@
         <title>Ifarm</title>
     </h:head>
     <h:body>
-        <p>Usuario Logado #{login.retornaCliente()}</p>
         <h:form>
+            <h:commandLink value="#{login.retornaCliente()}" action="#{alterarUsuario.alterarUsuario()}"></h:commandLink>
+            <br />
             <h:commandLink action="#{login.logout()}">Logout</h:commandLink>
         </h:form>
     </h:body>

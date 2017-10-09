@@ -5,7 +5,7 @@
  */
 package com.mycompany.model;
 
-
+import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -24,7 +24,6 @@ import javax.persistence.TypedQuery;
 @LocalBean
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class Aplicacao {
-    
 
     @PersistenceContext(name = "com.mycompany_Ifarm2.0_war_1.0-SNAPSHOTPU")
     private EntityManager em;
@@ -38,9 +37,19 @@ public class Aplicacao {
         }
         return true;
     }
-    
 
-   @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public boolean AtualizaCliente(Cliente cliente) {
+        try {
+            em.merge(cliente);
+        } catch (Exception ex) {
+            return false;
+        }
+        return true;
+
+    }
+
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public Cliente LoginUuario(String email, String senha) {
         Cliente cliente;
         try {
@@ -55,6 +64,76 @@ public class Aplicacao {
             return null;
         }
         return null;
+    }
+
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    public List<Cliente> pesquisaClientes(String login) {
+        List<Cliente> cliente;
+        try {
+            TypedQuery<Cliente> query = em.createQuery("SELECT c from Cliente c where c.login like ?1 ", Cliente.class);
+            query.setParameter(1, login);
+            cliente = query.getResultList();
+            if (cliente != null) {
+                return cliente;
+            }
+        } catch (Exception ex) {
+            return null;
+        }
+        return null;
+    }
+
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public void excluirCliente(Cliente cliente) {
+        em.remove(em.merge(cliente));
+    }
+
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public boolean CadastrarFarmacia(Farmacia farmacia) {
+        try {
+            em.persist(farmacia);
+        } catch (Exception ex) {
+            return false;
+        }
+        return true;
+
+    }
+
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public boolean AtualizaFarmacia(Farmacia farmacia) {
+        try {
+            em.merge(farmacia);
+        } catch (Exception ex) {
+            return false;
+        }
+        return true;
+
+    }
+
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public Farmacia PesquisaFarmacia(String nome) {
+        TypedQuery<Farmacia> query = em.createQuery(
+                "SELECT f FROM Farmacia AS f", Farmacia.class);
+        List<Farmacia> results = query.getResultList();
+
+        for (int i = 0; i < results.size(); i++) {
+            if (results.get(i).getNome().equals(nome)) {
+                return results.get(i);
+            }
+        }
+
+        return null;
+
+    }
+
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public boolean DeletaFarmacia(Farmacia farmacia) {
+        try {
+            em.remove(farmacia);
+        } catch (Exception ex) {
+            return false;
+        }
+        return true;
+
     }
 
 }
