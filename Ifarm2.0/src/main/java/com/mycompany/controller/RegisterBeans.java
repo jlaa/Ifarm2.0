@@ -7,15 +7,11 @@ package com.mycompany.controller;
 
 import com.mycompany.model.Aplicacao;
 import com.mycompany.model.Cliente;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import javax.validation.constraints.Size;
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
+
 
 /**
  *
@@ -23,55 +19,61 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Named(value = "register")
 @RequestScoped
-public class RegisterBeans {
+public class RegisterBeans implements Serializable {
+
     @EJB
     private Aplicacao aplicacao;
-  
+
     private String login;
 
     private String senha;
- 
+
     private String confirmarSenha;
 
     private String primeiroNome;
- 
+
     private String segundoNome;
-    
+
     private String sexo;
 
     private String email;
-    
+
     private String ocupacao;
 
     private String telefone;
-  
+
     private String estado;
-   
+
     private String rua;
- 
+
     private String numero;
 
     private String cidade;
-   
+
     private String bairo;
-    
-    private String cep;   
+
+    private String cep;
 
     private String nome = "";
-    
+
     public RegisterBeans() {
     }
-      public void cadastrarCliente() {
+
+    public String cadastrarCliente() {
         Cliente cliente = new Cliente();
         if (senha.equals(confirmarSenha)) {
             cliente.CadastrarCliente(email, senha, login);
-            cliente.AdicionarEndereco(rua, numero, bairo, cidade, estado,cep);
+            cliente.AdicionarEndereco(rua, numero, bairo, cidade, estado, cep);
             this.nome = primeiroNome + " " + segundoNome;
-            cliente.adicionarInformaçõesCliente(nome, telefone,ocupacao,sexo);  
-            aplicacao.CadastrarCliente(cliente);
+            cliente.adicionarInformaçõesCliente(nome, telefone, ocupacao, sexo);
+            if(aplicacao.CadastrarCliente(cliente))
+            {
+                return "Index.xhtml";
+            }
             
-        }  
-        
+            
+        }
+        return "Register.xhtml";
     }
 
     public String getLogin() {
@@ -201,9 +203,5 @@ public class RegisterBeans {
     public void setCep(String cep) {
         this.cep = cep;
     }
-    
-    
-    
-      
-    
+
 }

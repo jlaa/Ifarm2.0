@@ -14,6 +14,7 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -36,7 +37,24 @@ public class Aplicacao {
             return false;
         }
         return true;
+    }
+    
 
+   @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    public Cliente LoginUuario(String email, String senha) {
+        Cliente cliente;
+        try {
+            TypedQuery<Cliente> query = em.createQuery("SELECT c from Cliente c where c.email like ?1 and c.senha like ?2", Cliente.class);
+            query.setParameter(1, email);
+            query.setParameter(2, senha);
+            cliente = query.getSingleResult();
+            if (cliente != null) {
+                return cliente;
+            }
+        } catch (Exception ex) {
+            return null;
+        }
+        return null;
     }
 
 }

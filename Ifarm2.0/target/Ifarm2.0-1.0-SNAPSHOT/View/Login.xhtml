@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">      
+    <h:head>
+        <title>Ifarm</title>
+    </h:head>
+    <h:body>
+
+        <h:form id="geral">
+            <h:outputText value="Fazer Login"/>
+            <br />
+            <br />
+            <h:column>
+                <br />
+                <h:outputText  value="Email: "/><br />
+                <h:inputText id="email" value="#{login.email}" />
+                <br />
+                <h:message for="email" />
+                <br />
+                <br />                       
+                <h:outputText  value="Senha: "/><br />
+                <h:inputSecret id="senha" value="#{login.senha}" />
+                <br />
+                <h:message for="senha" />               
+                <br/>             
+                <br />
+                <h:commandButton   value="Submit" action="#{login.autenticacao()}" />  
+                <br />
+                <br />
+            </h:column>
+
+        </h:form>
+
+    </h:body>
+</html>
+
