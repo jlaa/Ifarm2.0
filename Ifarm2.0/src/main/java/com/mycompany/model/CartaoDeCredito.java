@@ -6,6 +6,8 @@
 package com.mycompany.model;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -29,28 +31,27 @@ import org.hibernate.validator.constraints.NotBlank;
  * @author LucasPC
  */
 @Entity
-@Table(name="CARTAO_TABLE")
+@Table(name = "CARTAO_TABLE")
 @Access(AccessType.FIELD)
 public class CartaoDeCredito implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CARTAO", nullable = false)
     private long id;
-    
+
     @NotBlank
     @Column(name = "TXT_BANDEIRA", nullable = false)
     private String bandeira;
 
     @CreditCardNumber
-    @Column(name = "TXT_NUMERO", nullable = false)
+    @Column(name = "TXT_NUMERO", nullable = false, unique = true)
     private String numero_cartao;
-    
+
     @NotBlank
-    @Column(name= "TXT_CODIGO",nullable = false)
+    @Column(name = "TXT_CODIGO", nullable = false)
     private String codigo;
 
-    //PROCURAR DEPOIS
     @Future
     @Temporal(TemporalType.DATE)
     @Column(name = "DT_EXPIRACAO", nullable = false)
@@ -59,13 +60,10 @@ public class CartaoDeCredito implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_CARTAO_CLIENTE", referencedColumnName = "ID_USUARIO")
     private Cliente cliente;
-    
-    public CartaoDeCredito()
-    {
-        
+
+    public CartaoDeCredito() {
+
     }
-    
-    
 
     public String getBandeira() {
         return bandeira;
@@ -94,6 +92,7 @@ public class CartaoDeCredito implements Serializable {
     public Calendar getDataExpiracao() {
         return dataExpiracao;
     }
+    
 
     public void setDataExpiracao(Calendar dataExpiracao) {
         this.dataExpiracao = dataExpiracao;
@@ -106,8 +105,9 @@ public class CartaoDeCredito implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
-    
-    
-}
 
+    public long getId() {
+        return id;
+    }
+
+}

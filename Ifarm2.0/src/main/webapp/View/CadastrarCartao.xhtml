@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Ifarm</title>
+    </h:head>
+    <h:body>
+        <h:form id="geral">
+            <h:outputText value="Cadastrar Cartão"/>
+
+
+            <h:column>
+                <br />
+                <h:outputText  value="Número Cartao: "/><br />
+                <h:inputText id="numero" value="#{registerCartao.numeroCartao}" />
+                <br />
+                <h:message for="numero" />
+                <br />
+                <br />                       
+                <h:outputText  value="Bandeira: "/><br />
+                <h:inputText id="bandeira" value="#{registerCartao.bandeira}" />
+                <br />
+                <h:message for="bandeira" />
+                <br />
+                <br />
+                <h:outputText  value="Codigo: "/><br />
+                <h:inputText id="codigo" value="#{registerCartao.codigo}" />
+                <br />
+                <h:message for="codigo" />
+                <br />
+                <br />
+                <h:outputText  value="Data de Expiracao: "/><br />
+                <h:inputText id="dataExpiracao" value="#{registerCartao.dataExpiracao}" />
+                <br />
+                <h:message for="dataExpiracao" />
+                <br />
+                <br />    
+                <h:commandButton action="#{registerCartao.RegisterCartao()}" value="Enviar"/>        
+            </h:column>
+
+        </h:form>
+
+    </h:body>
+</html>
+

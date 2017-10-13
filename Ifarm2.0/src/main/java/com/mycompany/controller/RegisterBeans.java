@@ -68,12 +68,12 @@ public class RegisterBeans implements Serializable {
             cliente.adicionarInformaçõesCliente(nome, telefone, ocupacao, sexo);
             if(aplicacao.CadastrarCliente(cliente))
             {
-                return "Index.xhtml";
+                return "Index.xhtml?faces-redirect=true";
             }
             
             
         }
-        return "Register.xhtml";
+        return "Register.xhtml?faces-redirect=true";
     }
 
     public String getLogin() {

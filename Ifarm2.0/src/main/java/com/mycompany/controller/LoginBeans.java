@@ -48,28 +48,28 @@ public class LoginBeans implements Serializable {
         if (cliente != null) {
             SingletonSession.getInstance().setAttribute("clienteLogado", cliente);
             facesContext.getExternalContext().getSession(true);
-            return "Logado";
+            return "Logado?faces-redirect=true";
         }
-        return "LoginError";
+        return "LoginError?faces-redirect=true";
     }
-    
-    public String retornaCliente() {
-        if (email != null) {
-            Cliente cliente = (Cliente) SingletonSession.getInstance().getAttribute("clienteLogado");
-            if (cliente != null) {
-                String clienteAtual = cliente.getLogin();
 
-                if (clienteAtual != null) {
-                    return clienteAtual;
-                }
+    public String retornaCliente() {
+        Cliente cliente = (Cliente) SingletonSession.getInstance().getAttribute("clienteLogado");
+        if (cliente != null) {
+
+            String clienteAtual = cliente.getLogin();
+
+            if (clienteAtual != null) {
+                return clienteAtual;
             }
+
         }
-        return "#";
+        return "";
     }
-    
+
     public String logout() throws ServletException {
-        SingletonSession.getInstance().encerrarSessao();   
-        return "Index.xhtml";
+        SingletonSession.getInstance().encerrarSessao();
+        return "Index.xhtml?faces-redirect=true";
     }
 
     public String getSenha() {

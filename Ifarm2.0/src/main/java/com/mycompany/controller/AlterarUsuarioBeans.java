@@ -37,7 +37,8 @@ public class AlterarUsuarioBeans implements Serializable {
 
     private String cep;
 
-    private String nome ;
+    private String nome;   
+    
 
     public String getTelefone() {
         Cliente cliente = (Cliente) SingletonSession.getInstance().getAttribute("clienteLogado");
@@ -148,7 +149,7 @@ public class AlterarUsuarioBeans implements Serializable {
         cliente.setNome(nome);
         cliente.setTelefone(telefone);
         aplicacao.AtualizaCliente(cliente);
-        return "Logado.xhtml";
+        return "Logado.xhtml?faces-redirect=true";
     }
 
 }

@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <h:form id="geral">
+            <h:outputText value="Alterar Cartão"/>
+
+            <h:dataTable  var="cartaos" style="border-style: none;"  value="#{alterarCartaoBeans.cartoes}">
+
+                <h:column>
+                    <br />
+                    <h:outputText  value="Número Cartao: "/><br />
+                    <h:outputText id="numero" value="#{cartaos.numero_cartao}" />
+                    <br />
+                    <h:message for="numero" />
+                    <br />
+                    <br />                       
+                    <h:outputText  value="Bandeira: "/><br />
+                    <h:outputText id="bandeira" value="#{cartaos.bandeira}" />
+                    <br />
+                    <h:message for="bandeira" />
+                    <br />
+                    <br />
+                    <h:outputText  value="Data de Expiracao: "/><br />
+                    <h:outputText  value="#{cartaos.dataExpiracao.time.toLocaleString()}"/><br /><br />
+                    <h:outputText  value="Nova Data de Expiracao: "/><br /><br />
+                    <h:inputText id="dataExpiracao" value="#{alterarCartaoBeans.dataExpiracao}" />
+                    <br />
+                    <h:message for="dataExpiracao" />
+                    <br />
+                    <br />    
+                    <h:commandButton action="#{alterarCartaoBeans.AlterarCartao(cartaos.numero_cartao)}" value="Enviar"/> 
+                    <h:commandButton action="#{alterarCartaoBeans.RemoverCartao(cartaos.numero_cartao)}" value="Deletar"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+
+</html>
+

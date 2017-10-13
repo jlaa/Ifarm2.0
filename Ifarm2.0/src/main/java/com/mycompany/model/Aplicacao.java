@@ -109,7 +109,7 @@ public class Aplicacao {
 
     }
 
-    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public Farmacia PesquisaFarmacia(String nome) {
         TypedQuery<Farmacia> query = em.createQuery(
                 "SELECT f FROM Farmacia AS f", Farmacia.class);
@@ -129,6 +129,87 @@ public class Aplicacao {
     public boolean DeletaFarmacia(Farmacia farmacia) {
         try {
             em.remove(farmacia);
+        } catch (Exception ex) {
+            return false;
+        }
+        return true;
+
+    }
+
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public boolean InserirCartao(CartaoDeCredito cartao) {
+        try {
+            em.persist(cartao);
+        } catch (Exception ex) {
+            return false;
+        }
+        return true;
+
+    }
+
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    public CartaoDeCredito PesquisaCartao(String numeroCartao) {
+        try {
+            TypedQuery<CartaoDeCredito> query = em.createQuery(
+                    "SELECT c FROM CartaoDeCredito AS c where c.numero_cartao = ?1 ", CartaoDeCredito.class);
+            query.setParameter(1, numeroCartao);
+            CartaoDeCredito cartao = query.getSingleResult();
+            if (cartao != null) {
+                return cartao;
+            }
+        } catch (Exception ex) {
+            return null;
+        }
+        return null;
+
+    }
+    
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    public List<CartaoDeCredito> listarCartao(String login) {
+        try {
+           TypedQuery<CartaoDeCredito> query = em.createQuery(
+                    "SELECT ca FROM Cliente AS c, CartaoDeCredito ca where c.login = ?1", CartaoDeCredito.class);
+            query.setParameter(1, login);
+            
+           List<CartaoDeCredito> cartaos = query.getResultList();
+            
+            if (cartaos != null) {
+                return cartaos;
+            }
+        } catch (Exception ex) {
+            return null;
+        }
+        return null;
+    }
+    
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    public CartaoDeCredito listaCartaos(Long id) {
+        try {
+            CartaoDeCredito cartao= em.find(CartaoDeCredito.class, id);
+            if (cartao != null) {
+                return cartao;
+            }
+        } catch (Exception ex) {
+            return null;
+        }
+        return null;
+
+    }
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public boolean AlterarCartao(CartaoDeCredito cartao) {
+        try {
+            em.merge(cartao);
+            
+        } catch (Exception ex) {
+            return false;
+        }
+        return true;
+
+    }
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public boolean DeletaCartao(CartaoDeCredito cartao) {
+        try {
+            em.remove(em.merge(cartao));
         } catch (Exception ex) {
             return false;
         }

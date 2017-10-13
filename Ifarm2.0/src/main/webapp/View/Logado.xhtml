@@ -12,6 +12,12 @@
             <h:commandLink value="#{login.retornaCliente()}" action="#{alterarUsuario.alterarUsuario()}"></h:commandLink>
             <br />
             <h:commandLink action="#{login.logout()}">Logout</h:commandLink>
+            <br />
+            <h:commandLink action="CadastrarCartao.xhtml?faces-redirect=true">Cadastrar Cartão</h:commandLink>
+            <br/>
+            <h:commandLink action="AlterarCartao.xhtml?faces-redirect=true" 
+                           rendered="#{!alterarCartaoBeans.cartoes.isEmpty()}">Alterar Cartão</h:commandLink>
+
         </h:form>
     </h:body>
 </html>
