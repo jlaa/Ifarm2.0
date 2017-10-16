@@ -44,7 +44,7 @@ public class Cliente implements Serializable {
     private long id;
 
     @NotBlank
-    @Size(max = 30)
+    @Size(max = 60)
     @Column(name = "TXT_NOME", nullable = false)
     private String nome;
 

@@ -9,7 +9,7 @@
     </h:head>
     <h:body>
         <h:form>
-            <h:commandLink value="#{login.retornaCliente()}" action="#{alterarUsuario.alterarUsuario()}"></h:commandLink>
+            <h:commandLink value="#{login.retornaCliente()}" action="AlterarUsuario.xhtml?faces-redirect=true"></h:commandLink>
             <br />
             <h:commandLink action="#{login.logout()}">Logout</h:commandLink>
             <br />

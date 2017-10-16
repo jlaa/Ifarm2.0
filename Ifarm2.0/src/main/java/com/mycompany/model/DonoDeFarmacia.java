@@ -40,7 +40,7 @@ public class DonoDeFarmacia implements Serializable {
     private Long id;
 
     @NotBlank
-    @Size(max = 30)
+    @Size(max = 60)
     @Column(name = "TXT_NOME", nullable = false)
     private String nome;
 
