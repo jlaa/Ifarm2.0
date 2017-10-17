@@ -109,31 +109,39 @@ public class Aplicacao {
 
     }
 
-    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+@TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public Farmacia PesquisaFarmacia(String nome) {
-        TypedQuery<Farmacia> query = em.createQuery(
-                "SELECT f FROM Farmacia AS f", Farmacia.class);
-        List<Farmacia> results = query.getResultList();
-
-        for (int i = 0; i < results.size(); i++) {
-            if (results.get(i).getNome().equals(nome)) {
-                return results.get(i);
-            }
-        }
-
-        return null;
-
+          TypedQuery<Farmacia> query = em.createQuery(
+      "SELECT f FROM Farmacia AS f WHERE f.nome like ?1", Farmacia.class);
+          query.setParameter(1, nome);
+          
+        Farmacia result = query.getSingleResult();
+           
+        return result;
+        
     }
-
+    
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public boolean DeletaFarmacia(Farmacia farmacia) {
         try {
-            em.remove(farmacia);
+            em.remove(em.merge(farmacia));
         } catch (Exception ex) {
             return false;
         }
         return true;
 
+    }
+    
+    public List<Remedio> PesquisaRemedio(String nome){
+        
+        TypedQuery<Remedio> query = em.createQuery(
+      "SELECT r FROM Remedio AS r WHERE r.nome like ?1", Remedio.class);
+        query.setParameter(1, nome);
+        
+           List<Remedio> results = query.getResultList();
+           
+        return results;
+        
     }
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)

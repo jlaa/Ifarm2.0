@@ -6,6 +6,7 @@
 package com.mycompany.controller;
 
 import com.mycompany.model.Aplicacao;
+import com.mycompany.model.Endereco;
 import com.mycompany.model.Farmacia;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -34,26 +35,43 @@ public class FarmUpdateBeans {
    
     private String bairro;
     
-    private String cep;   
+    private String cep;
+    
+    private String pesquisaNome;
     /**
      * Creates a new instance of FarmUpdateBeans
      */
     public FarmUpdateBeans() {
     }
     
-    public void atualizarFarmacia(String nome, String novoNome,String rua,String numero,String bairro,String cidade,String estado,String cep){
+    public void preencherFarmacia(){
+        Farmacia farmacia = aplicacao.PesquisaFarmacia(pesquisaNome);
+        Endereco endereco = farmacia.getEndereco();
+        this.nome = farmacia.getNome();
+        this.bairro = endereco.getBairro();
+        this.cep = endereco.getCep();
+        this.cidade = endereco.getCidade();
+        this.estado = endereco.getEstado();
+        this.rua = endereco.getRua();
+        this.numero = endereco.getNumero();
+        
+    }
+    
+    public String atualizarFarmacia(){
         Farmacia farmacia = aplicacao.PesquisaFarmacia(nome);
-        farmacia.CadastrarFarmacia(novoNome);
+        farmacia.CadastrarFarmacia(nome);
         farmacia.InserirEndereco(rua, numero, bairro, cidade, estado, cep);
         aplicacao.AtualizaFarmacia(farmacia);
+        
+        return "gerenciaFarmacia";
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String novoNome) {
+        this.nome = novoNome;
     }
 
     public String getEstado() {
@@ -88,12 +106,12 @@ public class FarmUpdateBeans {
         this.cidade = cidade;
     }
 
-    public String getBairo() {
+    public String getBairro() {
         return bairro;
     }
 
-    public void setBairo(String bairo) {
-        this.bairro = bairo;
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 
     public String getCep() {
@@ -103,6 +121,13 @@ public class FarmUpdateBeans {
     public void setCep(String cep) {
         this.cep = cep;
     }
-    
+
+    public String getPesquisaNome() {
+        return pesquisaNome;
+    }
+
+    public void setPesquisaNome(String newNome) {
+        this.pesquisaNome = newNome;
+    }
     
 }

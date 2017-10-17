@@ -39,11 +39,13 @@ public class FarmRegisterBeans {
     public FarmRegisterBeans() {
     }
     
-    public void cadastrarFarmacia(){
+    public String cadastrarFarmacia(){
         Farmacia farmacia = new Farmacia();
         farmacia.CadastrarFarmacia(nome);
         farmacia.InserirEndereco(rua, numero, bairo, cidade, estado, cep);
         aplicacao.CadastrarFarmacia(farmacia);
+        
+        return "gerenciaFarmacia";
         
     }
 

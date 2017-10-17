@@ -7,11 +7,15 @@ package com.mycompany.controller;
 
 import com.mycompany.model.Aplicacao;
 import com.mycompany.model.Cliente;
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -19,7 +23,7 @@ import javax.enterprise.context.RequestScoped;
  */
 @Named(value = "register")
 @RequestScoped
-public class RegisterBeans implements Serializable {
+public class RegisterBeans {
 
     @EJB
     private Aplicacao aplicacao;
@@ -59,21 +63,17 @@ public class RegisterBeans implements Serializable {
     public RegisterBeans() {
     }
 
-    public String cadastrarCliente() {
+    public void cadastrarCliente() {
         Cliente cliente = new Cliente();
         if (senha.equals(confirmarSenha)) {
             cliente.CadastrarCliente(email, senha, login);
             cliente.AdicionarEndereco(rua, numero, bairo, cidade, estado, cep);
             this.nome = primeiroNome + " " + segundoNome;
             cliente.adicionarInformaçõesCliente(nome, telefone, ocupacao, sexo);
-            if(aplicacao.CadastrarCliente(cliente))
-            {
-                return "Index.xhtml?faces-redirect=true";
-            }
-            
-            
+            aplicacao.CadastrarCliente(cliente);
+
         }
-        return "Register.xhtml?faces-redirect=true";
+
     }
 
     public String getLogin() {

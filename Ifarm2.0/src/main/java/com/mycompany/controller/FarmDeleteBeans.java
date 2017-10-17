@@ -21,15 +21,25 @@ public class FarmDeleteBeans {
 
     @EJB
     private Aplicacao aplicacao;
+    
+    private String nome;
     /**
      * Creates a new instance of FarmDeleteBeans
      */
     public FarmDeleteBeans() {
     }
     
-    public void DeleteFarmacia(String nome){
+    public void DeleteFarmacia(){
         Farmacia farmacia = aplicacao.PesquisaFarmacia(nome);
         aplicacao.DeletaFarmacia(farmacia);
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     
 }
