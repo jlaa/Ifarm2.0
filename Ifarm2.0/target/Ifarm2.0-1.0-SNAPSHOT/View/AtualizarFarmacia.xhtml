@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">      
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <h:form id="geral">
+            <h:outputText value="Atualizar Farmacia"/>
+            
+            <h:inputText value = "#{farmUpdate.pesquisaNome}"/>
+            <br />
+            <h:commandLink value = "Pesquisar" action="#{farmUpdate.preencherFarmacia()}"/>
+
+            <h:column>
+                <br />
+                <h:outputText  value="Nome da Farmacia: "/><br />
+                <h:inputText id="primeiroNome" value="#{farmUpdate.nome}" />
+                <br />
+                <h:message for="primeiroNome" />
+                <br />
+                <br />
+                <h:outputText  value="Estado: "/><br />
+                <h:inputText id="estado" value="#{farmUpdate.estado}"/>
+                
+                <br />
+                <h:message for="estado" />
+                <br />
+                <br />
+                <h:outputText  value="Rua: "/><br />
+                <h:inputText id="rua" value="#{farmUpdate.rua}"/>
+                <br />
+                <h:message for="rua" />
+                <br />
+                <br />
+                <h:outputText  value="Número: "/><br />
+                <h:inputText id="numero" value="#{farmUpdate.numero}"/>
+                <br />
+                <h:message for="numero" />            
+                <br />
+                <br />
+                <h:outputText value="Bairro: "/><br />
+                <h:inputText id="bairro" value="#{farmUpdate.bairro}" />
+                <br />
+                <h:message for="bairro" />
+                <br/>
+                <br/>
+                <h:outputText value="Cidade: "/><br />
+                <h:inputText id="cidade" value="#{farmUpdate.cidade}"/>
+                <h:message for="cidade" /> 
+                <br/>
+                <br />
+                <h:outputText  value="CEP: "/><br />
+                <h:inputText id="cep" value="#{farmUpdate.cep}"/>
+                <br />
+                <h:message for="cep" />
+                <br />
+                <br />
+                <h:commandButton   value="Submit" action="#{farmUpdate.atualizarFarmacia()}" />  
+                <br />
+                <br />
+            </h:column>
+
+        </h:form>
+
+    </h:body>
+</html>

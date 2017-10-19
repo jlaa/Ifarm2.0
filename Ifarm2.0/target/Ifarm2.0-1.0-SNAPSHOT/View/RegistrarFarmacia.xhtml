@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">      
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <h:form id="geral">
+            <h:outputText value="Informação pessoal"/>
+
+
+            <h:column>
+                <br />
+                <h:outputText  value="Nome da Farmacia: "/><br />
+                <h:inputText id="primeiroNome" value="#{farmRegister.nome}" />
+                <br />
+                <h:message for="primeiroNome" />
+                <br />
+                <br />
+                <h:outputText  value="Estado: "/><br />
+                <h:inputText id="estado" value="#{farmRegister.estado}"/>
+                
+                <br />
+                <h:message for="estado" />
+                <br />
+                <br />
+                <h:outputText  value="Rua: "/><br />
+                <h:inputText id="rua" value="#{farmRegister.rua}"/>
+                <br />
+                <h:message for="rua" />
+                <br />
+                <br />
+                <h:outputText  value="Número: "/><br />
+                <h:inputText id="numero" value="#{farmRegister.numero}"/>
+                <br />
+                <h:message for="numero" />            
+                <br />
+                <br />
+                <h:outputText value="Bairro: "/><br />
+                <h:inputText id="bairro" value="#{farmRegister.bairo}" />
+                <br />
+                <h:message for="bairro" />
+                <br/>
+                <br/>
+                <h:outputText value="Cidade: "/><br />
+                <h:inputText id="cidade" value="#{farmRegister.cidade}"/>
+                <h:message for="cidade" /> 
+                <br/>
+                <br />
+                <h:outputText  value="CEP: "/><br />
+                <h:inputText id="cep" value="#{farmRegister.cep}"/>
+                <br />
+                <h:message for="cep" />
+                <br />
+                <br />
+                <h:commandButton   value="Submit" action="#{farmRegister.cadastrarFarmacia()}" />  
+                <br />
+                <br />
+            </h:column>
+
+        </h:form>
+
+    </h:body>
+</html>
